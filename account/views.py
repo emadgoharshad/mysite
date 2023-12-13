@@ -18,6 +18,7 @@ def login_view(request):
         return redirect('account:home')
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             print('form', form.cleaned_data)
             email = form.cleaned_data.get('email')
@@ -27,6 +28,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 return redirect('account:home')
+
     else:
         form = AccountAuthenticationForm()
     
