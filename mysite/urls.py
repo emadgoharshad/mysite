@@ -3,13 +3,18 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from azbankgateways.urls import az_bank_gateways_urls
+from product.bank import go_to_gateway, callback_gateway_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
+    path('product/', include('product.urls')),
 
-
+    path('bankgateways/', az_bank_gateways_urls()),
+    path('go-to-gateway/', go_to_gateway, name='go-to-gateway'),
+    path('callback-gateway/', callback_gateway_view),
 
 
 

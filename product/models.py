@@ -6,6 +6,9 @@ from account.models import Account
 class Category(models.Model):
     title = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.title
+
 
 def get_product_image_filepath(self, filename):
     return 'product/product_images/' + str(self.pk) + '/product_image.png'
@@ -51,6 +54,8 @@ class Cart(models.Model):
 class Payment(models.Model):
     user = models.ForeignKey(Account,on_delete=models.CASCADE)
     payment_number = models.CharField(max_length=100)
+    payment_method = models.CharField(max_length=100)
+    amount_paid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
